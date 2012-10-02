@@ -19,7 +19,7 @@ var self = $.Joomla = function(method, args) {
 
 		var fn = args;
 
-		if (self.version > 1.5) {
+		if ($.joomlaVersion > 1.5) {
 			window.Joomla[method] = fn;
 		} else {
 			window[method] = fn;
@@ -29,7 +29,7 @@ var self = $.Joomla = function(method, args) {
 	}
 
 	// Calling function
-	var method = (self.version > 1.5) ? window.Joomla[method] : window[method];
+	var method = ($.joomlaVersion > 1.5) ? window.Joomla[method] : window[method];
 
 	if ($.isFunction(method)) {
 		return method.apply(window, args);
