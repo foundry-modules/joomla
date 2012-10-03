@@ -12,6 +12,12 @@
  *
  */
 
+var parser = {
+	squeezebox: function() {
+		return ($.joomlaVersion > 1.5) ? window.parent.SqueezeBox : window.parent.document.getElementById('sbox-window');
+	}
+};
+
 var self = $.Joomla = function(method, args) {
 
 	// Overriding function
@@ -29,9 +35,9 @@ var self = $.Joomla = function(method, args) {
 	}
 
 	// Calling function
-	var method = ($.joomlaVersion > 1.5) ? window.Joomla[method] : window[method];
+	var method = parser[method] || ($.joomlaVersion > 1.5) ? window.Joomla[method] : window[method];
 
 	if ($.isFunction(method)) {
 		return method.apply(window, args);
 	}
-}
+};
