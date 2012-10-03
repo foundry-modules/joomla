@@ -35,7 +35,7 @@ var self = $.Joomla = function(method, args) {
 	}
 
 	// Calling function
-	var method = parser[method] || ($.joomlaVersion > 1.5) ? window.Joomla[method] : window[method];
+	var method = parser[method] || (($.joomlaVersion > 1.5) ? window.Joomla[method] : window[method]);
 
 	if ($.isFunction(method)) {
 		return method.apply(window, args);
