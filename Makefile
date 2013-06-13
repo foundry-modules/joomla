@@ -1,22 +1,6 @@
+all: wrap-core minify
+
 include ../../build/modules.mk
 
 MODULE = joomla
-FILENAME = ${MODULE}.js
-RAWFILE = ${DEVELOPMENT_DIR}/${MODULE}.raw.js
-
-SOURCE = ${SOURCE_DIR}/joomla.js
-
-PRODUCTION = ${PRODUCTION_DIR}/${FILENAME}
-DEVELOPMENT = ${DEVELOPMENT_DIR}/${FILENAME}
-
-all: raw module clean
-
-module:
-	${WRAP} -c ${RAWFILE} > ${DEVELOPMENT}
-	${UGLIFYJS} ${DEVELOPMENT} > ${PRODUCTION}
-
-raw:
-	cat ${SOURCE} > ${RAWFILE}
-
-clean:
-	rm -fr ${RAWFILE}
+FILENAME_PREFIX = 
