@@ -1,6 +1,6 @@
-all: wrap-core minify
+all: wrap-script minify-script
 
 include ../../build/modules.mk
 
 MODULE = joomla
-FILENAME_PREFIX = 
+SOURCE_SCRIPT_FILE_PREFIX = 
