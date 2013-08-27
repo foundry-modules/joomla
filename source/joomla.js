@@ -14,7 +14,7 @@
 
 var parser = {
 	squeezebox: function() {
-		return ($.joomlaVersion > 1.5) ? window.parent.SqueezeBox : window.parent.document.getElementById('sbox-window');
+		return ($.joomla.version > 1.5) ? window.parent.SqueezeBox : window.parent.document.getElementById('sbox-window');
 	}
 };
 
@@ -25,7 +25,7 @@ var self = $.Joomla = function(method, args) {
 
 		var fn = args;
 
-		if ($.joomlaVersion > 1.5) {
+		if ($.joomla.version > 1.5) {
 			window.Joomla[method] = fn;
 		} else {
 			window[method] = fn;
@@ -35,7 +35,7 @@ var self = $.Joomla = function(method, args) {
 	}
 
 	// Calling function
-	var method = parser[method] || (($.joomlaVersion > 1.5) ? window.Joomla[method] : window[method]);
+	var method = parser[method] || (($.joomla.version > 1.5) ? window.Joomla[method] : window[method]);
 
 	if ($.isFunction(method)) {
 		return method.apply(window, args);
