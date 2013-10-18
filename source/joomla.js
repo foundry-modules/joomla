@@ -14,7 +14,7 @@
 
 var parser = {
 	squeezebox: function() {
-		return ($.joomla.version > 1.5) ? window.parent.SqueezeBox : window.parent.document.getElementById('sbox-window');
+		return (self.isJoomla15) ? window.parent.SqueezeBox : window.parent.document.getElementById('sbox-window');
 	}
 };
 
@@ -25,7 +25,7 @@ var self = $.Joomla = function(method, args) {
 
 		var fn = args;
 
-		if ($.joomla.version > 1.5) {
+		if (self.isJoomla15) {
 			window.Joomla[method] = fn;
 		} else {
 			window[method] = fn;
@@ -35,9 +35,14 @@ var self = $.Joomla = function(method, args) {
 	}
 
 	// Calling function
-	var method = parser[method] || (($.joomla.version > 1.5) ? window.Joomla[method] : window[method]);
+	var method = parser[method] || ((self.isJoomla15) ? window.Joomla[method] : window[method]);
 
 	if ($.isFunction(method)) {
 		return method.apply(window, args);
 	}
 };
+
+var version = parseFloat($.joomla.version);
+self.isJoomla15 = version <= 1.5;
+self.isJoomla25 = version >= 1.6 && version <= 2.5;
+self.isJoomla30 = version >= 3.0;
