@@ -14,7 +14,7 @@
 
 var parser = {
 	squeezebox: function() {
-		return (self.isJoomla15) ? window.parent.SqueezeBox : window.parent.document.getElementById('sbox-window');
+		return (self.isJoomla15) ? window.parent.document.getElementById('sbox-window') : window.parent.SqueezeBox;
 	}
 };
 
@@ -26,16 +26,16 @@ var self = $.Joomla = function(method, args) {
 		var fn = args;
 
 		if (self.isJoomla15) {
-			window.Joomla[method] = fn;
-		} else {
 			window[method] = fn;
+		} else {
+			window.Joomla[method] = fn;
 		};
 
 		return;
 	}
 
 	// Calling function
-	var method = parser[method] || ((self.isJoomla15) ? window.Joomla[method] : window[method]);
+	var method = parser[method] || ((self.isJoomla15) ? window[method] : window.Joomla[method]);
 
 	if ($.isFunction(method)) {
 		return method.apply(window, args);
